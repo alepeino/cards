@@ -6,12 +6,20 @@ body {
 
 .container {
   width: 960px;
-  padding: 1em 0;
+  padding: 1rem 0;
 }
 
 .card {
   background: $color-lightest;
-  box-shadow: 1px 1px 20px 0 $color-dark;
+}
+
+.card-shadow {
+  margin: {
+    top: .75rem;
+    bottom: .75rem;
+  }
+
+  box-shadow: 1px 1px 1rem 0 $color-dark;
 }
 
 .text-dark { color: $color-alt-darkest; }

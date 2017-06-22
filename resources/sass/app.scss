@@ -1,0 +1,17 @@
+@import "colors";
+
+body {
+  background-color: $color-main;
+}
+
+.container {
+  width: 960px;
+  padding: 1em 0;
+}
+
+.card {
+  background: $color-lightest;
+  box-shadow: 1px 1px 20px 0 $color-dark;
+}
+
+.text-dark { color: $color-alt-darkest; }

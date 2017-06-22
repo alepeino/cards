@@ -3,6 +3,6 @@
   (:require [re-frame.core :as re-frame]))
 
 (re-frame/reg-sub
- :name
+ :cards
  (fn [db]
-   (:name db)))
+   (:cards db)))

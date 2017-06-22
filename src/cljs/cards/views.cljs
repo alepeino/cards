@@ -35,10 +35,10 @@
        [:label (str @data)]])))
 
 (defn main []
-  (let [name (re-frame/subscribe [:name])]
+  (let [cards (re-frame/subscribe [:cards])]
     (fn []
       [:div.container
-       (all-cards (range 8))
+       (all-cards @cards)
        [:div.row.mt-5
         [:div.col-sm-6.offset-sm-3.text-center
          [form]]]])))

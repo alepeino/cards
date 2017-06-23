@@ -1,7 +1,7 @@
 (ns cards.components.card)
 
-(defn card [i c]
-  [:div.card.card-shadow {:key i}
+(defn card [c]
+  [:div.card.card-shadow.text-dark
    [:div.card-block
     (map-indexed
       (fn [key content]

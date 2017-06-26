@@ -5,12 +5,12 @@
 
 (defn- form-template []
   [:div
-   (form-group :title "Title")
-   (form-group :content "Content" :textarea)
+   (form-group :type "Type" {:input {:field :list :options {:twitter-user "Twitter user"}}})
+   (form-group :value "User" {:input {:placeholder "@username"}})
    [:input.btn.btn-primary {:type "submit"}]])
 
 (defn new-card-form [submit]
-  (let [init {:title "New card title" :content ""}
+  (let [init {:type :twitter-user :value ""}
         data (r/atom init)]
     (fn []
       [:form.text-dark.text-left

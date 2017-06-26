@@ -5,7 +5,7 @@
 
 (defn- all-cards [cards]
   [:div.card-columns
-   (for [c cards] ^{:key (:title c)}
+   (for [c cards] ^{:key (str (:type c) (:value c))}
      [card c])])
 
 (defn main []

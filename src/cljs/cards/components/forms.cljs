@@ -1,6 +1,20 @@
 (ns cards.components.forms
   (:require [cards.utils :refer [deep-merge]]))
 
+(defmulti input #(:field %2))
+
+(defmethod input :textarea [id attrs]
+  [:textarea (merge attrs {:id id})])
+
+(defmethod input :list [id attrs]
+  [:select
+   (-> attrs (assoc :id id) (dissoc :options))
+   (for [[key text] (:options attrs)]
+     [:option {:key key} text])])
+
+(defmethod input :default [id attrs]
+  [:input (merge attrs {:id id})])
+
 (defn- fg-options [{{:keys [field]} :input :as overrides}]
   (deep-merge
     {:class "form-group"
@@ -15,12 +29,6 @@
       [:file] {:input {:class "form-control-file"}}
       {})
     overrides))
-
-(defn- input [id attrs]
-  [(case (:field attrs)
-     :textarea :textarea
-     :input)
-   (merge attrs {:id id})])
 
 (defn form-group
   ([id label]

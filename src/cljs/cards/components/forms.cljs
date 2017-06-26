@@ -4,6 +4,7 @@
 (defn- fg-options [{{:keys [field]} :input :as overrides}]
   (deep-merge
     {:class "form-group"
+     :field :container
      :label {:class "form-control-label"}
      :input {:class "form-control"
              :field :text}}

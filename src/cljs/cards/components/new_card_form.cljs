@@ -4,16 +4,18 @@
             [cards.components.forms :refer [form-group]]))
 
 (defn- form-template []
-  [:form.form-horizontal.text-dark
-   (form-group :first-name "First name")
-   (form-group :last-name "Last name")
-   (form-group :age "Age" :numeric)
-   (form-group :email "E-Mail" :email)
-   (form-group :comments "Comments" :textarea)])
+  [:div
+   (form-group :title "Title")
+   (form-group :content "Content" :textarea)
+   [:input.btn.btn-primary {:type "submit"}]])
 
-(defn new-card-form []
-  (let [data (r/atom {:first-name "John" :last-name "Doe" :age 35})]
+(defn new-card-form [submit]
+  (let [init {:title "New card title" :content ""}
+        data (r/atom init)]
     (fn []
-      [:div
-       [bind-fields (form-template) data]
-       [:label (str @data)]])))
+      [:form.text-dark.text-left
+       {:on-submit (fn [e]
+                     (.preventDefault e)
+                     (submit @data)
+                     (reset! data init))}
+       [bind-fields (form-template) data]])))

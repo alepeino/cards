@@ -5,7 +5,7 @@
 
 (defn- all-cards [cards]
   [:div.card-columns
-   (for [c cards] ^{:key (:id c)}
+   (for [c cards] ^{:key (:title c)}
      [card c])])
 
 (defn main []
@@ -16,4 +16,4 @@
        [:div.row.mt-5
          [:div.col-sm-4.offset-sm-4.text-center
           [:h2.text-dark "New card"]
-          [new-card-form]]]])))
+          [new-card-form #(re-frame/dispatch [:new-card %])]]]])))

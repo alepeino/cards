@@ -5,3 +5,4 @@
 /resources/public/css
 /out
 /.sass-cache
+/node_modules

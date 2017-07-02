@@ -4,12 +4,22 @@
             [cards.events]
             [cards.subs]
             [cards.views :as views]
-            [cards.config :as config]))
-
+            [cards.config :as config]
+            twitter-fetcher))
 
 (defn dev-setup []
   (when config/debug?
     (enable-console-print!)
+    (let [conf (clj->js {:profile {:screenName "alepeino"}
+                         :domId ""
+                         :maxTweets 1
+                         :enableLinks true
+                         :showUser true
+                         :showTime true
+                         :customCallback prn
+                         :showImages true})]
+      (twitter-fetcher/fetch conf))
+    ;(js->clj)
     (println "dev mode")))
 
 (defn mount-root []

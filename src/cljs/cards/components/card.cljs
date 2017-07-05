@@ -1,14 +1,25 @@
-(ns cards.components.card)
+(ns cards.components.card
+  (:require
+    (reagent.core :as r)))
 
-(defmulti card-content #(:type %))
+(defrecord Card [type value header-content body-content update-fn])
 
-(defmethod card-content :twitter-user [c]
-  [[:div.card-header
-    [:h5.pt-2 (:value c)]]
-   [:div.card-block
-    [:p.card-text (:value c)]]])
+(defmulti make-card :type)
+
+(defmethod make-card :twitter-user [c]
+  (-> c
+    (assoc :header-content (:value c)
+           :body-content ""
+           :update-fn (fn [this]
+                        (update this :body-content #(str % "."))))
+    (map->Card)))
 
 (defn card [c]
-  (apply vector
-    :div.card.card-shadow.text-dark
-    (card-content c)))
+  (let [c (r/atom (make-card c))]
+    (fn []
+      (js/setTimeout #(swap! c (:update-fn @c)) 1000)
+      [:div.card.card-shadow.text-dark
+       [:div.card-header
+        [:h5.pt-2 (:header-content @c)]]
+       [:div.card-block
+        [:p.card-text (:body-content @c)]]])))

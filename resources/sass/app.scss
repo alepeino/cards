@@ -6,6 +6,10 @@ body {
 
 .card {
   background: $color-lightest;
+
+  .card-header, .card-block {
+    word-wrap: break-word;
+  }
 }
 
 .card-shadow {
@@ -16,5 +20,6 @@ body {
 
   box-shadow: 1px 1px 1rem 0 $color-dark;
 }
+
 
 .text-dark { color: $color-alt-darkest; }

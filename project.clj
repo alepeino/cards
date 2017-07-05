@@ -3,7 +3,8 @@
                  [org.clojure/clojurescript "1.9.229"]
                  [reagent "0.6.0"]
                  [reagent-forms "0.5.29"]
-                 [re-frame "0.9.4"]]
+                 [re-frame "0.9.4"]
+                 [cljs-http "0.1.43"]]
 
   :plugins [[lein-cljsbuild "1.1.4"]
             [lein-sassy "1.0.8"]]

@@ -1,7 +1,8 @@
 (ns cards.views
-  (:require [re-frame.core :as re-frame]
-            [cards.components.card :refer [card]]
-            [cards.components.new-card-form :refer [new-card-form]]))
+  (:require
+    [cards.components.card :refer [card]]
+    [cards.components.new-card-form :refer [new-card-form]]
+    [re-frame.core :as re-frame]))
 
 (defn- all-cards [cards]
   [:div.card-columns
@@ -10,10 +11,9 @@
 
 (defn main []
   (let [cards (re-frame/subscribe [:cards])]
-    (fn []
-      [:div.container
-       (all-cards @cards)
-       [:div.row.mt-5
-         [:div.col-md-4.offset-md-4
-          [:h2.text-dark.text-center "New card"]
-          [new-card-form #(re-frame/dispatch [:new-card %])]]]])))
+    [:div.container
+     (all-cards @cards)
+     [:div.row.mt-5
+      [:div.col-md-4.offset-md-4
+       [:h2.text-dark.text-center "New"]
+       [new-card-form #(re-frame/dispatch [:new-card %])]]]]))

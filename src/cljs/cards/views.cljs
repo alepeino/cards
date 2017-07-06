@@ -13,7 +13,12 @@
   (let [cards (re-frame/subscribe [:cards])]
     [:div.container
      (all-cards @cards)
-     [:div.row.mt-5
-      [:div.col-md-4.offset-md-4
-       [:h2.text-dark.text-center "New"]
-       [new-card-form #(re-frame/dispatch [:new-card %])]]]]))
+     [:nav.navbar.bg-faded
+      [:button.navbar-toggler.navbar-toggler-right
+         {:type "button" :data-toggle "collapse" :data-target "#navbarSupportedContent" :aria-controls "navbarSupportedContent"
+          :aria-expanded "false" :aria-label "Toggle navigation"}
+         [:span.navbar-toggler-icon]]
+      [:h2.text-dark.text-center "New"]
+      [:div#navbarSupportedContent.collapse.navbar-collapse
+         [:h2.text-dark.text-center "New"]
+         [new-card-form #(re-frame/dispatch [:new-card %])]]]]))

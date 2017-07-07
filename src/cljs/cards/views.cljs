@@ -13,12 +13,18 @@
   (let [cards (re-frame/subscribe [:cards])]
     [:div.container
      (all-cards @cards)
-     [:nav.navbar.bg-faded
-      [:button.navbar-toggler.navbar-toggler-right
-         {:type "button" :data-toggle "collapse" :data-target "#navbarSupportedContent" :aria-controls "navbarSupportedContent"
-          :aria-expanded "false" :aria-label "Toggle navigation"}
+     [:div#accordion.navbar.navbar-light.fixed-bottom
+      [:div.card
+       [:div#filter-cards.w-75.m-auto.collapse.show
+        [:a.navbar-toggler.navbar-toggler-right
+         {:data-toggle "collapse" :href "#new-card" :data-parent "#accordion"
+          :aria-controls "navbar-expanded" :aria-expanded "false" :aria-label "Toggle navigation"}
          [:span.navbar-toggler-icon]]
-      [:h2.text-dark.text-center "New"]
-      [:div#navbarSupportedContent.collapse.navbar-collapse
-         [:h2.text-dark.text-center "New"]
-         [new-card-form #(re-frame/dispatch [:new-card %])]]]]))
+        [:h2.text-dark.text-center "1"]]
+       [:div#new-card.w-75.m-auto.collapse
+        [:a.navbar-toggler.navbar-toggler-right
+         {:data-toggle "collapse" :href "#filter-cards" :data-parent "#accordion"
+          :aria-controls "navbar-expanded" :aria-expanded "false" :aria-label "Toggle navigation"}
+         [:span.navbar-toggler-icon]]
+        [:h2.text-dark.text-center "2"]
+        [new-card-form #(re-frame/dispatch [:new-card %])]]]]]))
